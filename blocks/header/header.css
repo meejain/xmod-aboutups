@@ -1,9 +1,10 @@
-/* header and nav layout */
+/* UPS Header — mobile first */
 header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 2;
   position: fixed;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 header nav {
@@ -33,14 +34,17 @@ header nav[aria-expanded='true'] {
 @media (width >= 900px) {
   header .nav-wrapper {
     position: relative;
+    border-bottom: none;
   }
 
   header nav {
     display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0;
     max-width: 1264px;
     padding: 0 32px;
+    height: 100px;
   }
 
   header nav[aria-expanded='true'] {
@@ -56,6 +60,7 @@ header nav p {
 
 header nav a:any-link {
   color: currentcolor;
+  text-decoration: none;
 }
 
 /* hamburger */
@@ -139,21 +144,58 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
   }
 }
 
-/* brand */
+/* brand — UPS shield logo */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
+  flex-basis: 80px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
 }
 
 header nav .nav-brand img {
-  width: 128px;
-  height: auto;
+  width: 56px;
+  height: 67px;
 }
 
-/* sections */
+@media (width >= 900px) {
+  header .nav-brand {
+    flex-basis: 80px;
+    margin-right: 32px;
+  }
+
+  header nav .nav-brand img {
+    width: 56px;
+    height: 67px;
+  }
+}
+
+/* tools — utility links */
+header nav .nav-tools {
+  grid-area: tools;
+}
+
+header nav .nav-tools p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+header nav .nav-tools a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 4px 16px 0;
+  white-space: nowrap;
+  border-left: 1px solid #e8e8e8;
+}
+
+header nav .nav-tools a:first-child {
+  border-left: none;
+}
+
+/* sections — primary nav links */
 header nav .nav-sections {
   grid-area: sections;
   flex: 1 1 auto;
@@ -170,11 +212,12 @@ header nav[aria-expanded='true'] .nav-sections {
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
+  font-size: 16px;
 }
 
 header nav .nav-sections ul > li {
-  font-weight: 500;
+  font-weight: 700;
+  padding: 12px 0;
 }
 
 header nav .nav-sections ul > li > ul {
@@ -185,7 +228,95 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 400;
 }
 
+/* stylelint-disable no-descending-specificity -- sections vs tools targets */
+
+/* section anchor base */
+header nav .nav-sections ul > li > a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* stylelint-enable no-descending-specificity */
+
+/* tools link hover */
+header nav .nav-tools a:hover {
+  text-decoration: underline;
+}
+
+/* external link icon */
+header nav .nav-tools .icon-external {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+header nav .nav-tools .icon-external svg {
+  width: 12px;
+  height: 12px;
+  color: #426da9;
+}
+
+/* language selector button */
+header nav .nav-tools .nav-lang-btn {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 4px 16px 0;
+  background: transparent;
+  border: 0;
+  border-left: 1px solid #e8e8e8;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+header nav .nav-tools .nav-lang-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+header nav .nav-tools .nav-lang-btn:hover {
+  text-decoration: underline;
+}
+
+/* search button */
+header nav .nav-tools .nav-search-btn {
+  background: transparent;
+  border: 0;
+  border-left: 1px solid #e8e8e8;
+  cursor: pointer;
+  padding: 0 6px 0 16px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-color);
+}
+
+header nav .nav-tools .nav-search-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+header nav .nav-tools .nav-search-btn:hover {
+  opacity: 0.7;
+}
+
+/* section anchor hover */
+header nav .nav-sections ul > li > a:hover {
+  color: var(--text-color);
+}
+
 @media (width >= 900px) {
+  header nav .nav-tools {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -196,77 +327,257 @@ header nav .nav-sections ul > li > ul > li {
     align-self: unset;
   }
 
+  /* Nav item — position relative for gold bar */
   header nav .nav-sections .nav-drop {
     position: relative;
-    padding-right: 16px;
     cursor: pointer;
   }
 
-  header nav .nav-sections .nav-drop::after {
-    content: '';
+  /* Gold hover bar under nav links — ::after pseudo-element */
+  header nav .nav-sections .default-content-wrapper > ul > li > a {
+    position: relative;
     display: inline-block;
-    position: absolute;
-    top: 0.5em;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
+    padding: 8px 0;
   }
 
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 0.5em;
-    transform: rotate(315deg);
+  header nav .nav-sections .default-content-wrapper > ul > li > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ffd100;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > a:hover::after,
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > a::after {
+    transform: scaleX(1);
   }
 
   header nav .nav-sections ul {
     display: flex;
-    gap: 24px;
+    gap: 0;
     margin: 0;
+    align-items: center;
+  }
+
+  header nav .nav-sections ul > li {
+    padding: 0;
+    margin: 0 15px;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
     flex: 0 1 auto;
-    position: relative;
+    position: static;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
+  /* ===== Megamenu dropdown panel ===== */
+
+  /* Slide-down animation */
+  @keyframes megamenu-slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Panel hidden by default */
+  header nav .nav-sections .megamenu-panel {
     display: none;
-    position: relative;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+  /* Panel visible when expanded — full-width, positioned relative to .nav-wrapper */
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] .megamenu-panel {
     display: block;
     position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 40px 130px 20px;
+    background-color: var(--background-color);
     white-space: initial;
+    border-top: 1px solid #f2f2f2;
+    border-radius: 0 0 16px 16px;
+    animation: megamenu-slide-down 0.25s ease-out;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
+  /* Section title label (e.g. "INVESTORS") */
+  header nav .nav-sections .megamenu-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #808080;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
+  /* Column layout — max 4 items per column */
+  header nav .nav-sections .megamenu-panel > ul {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    max-height: 176px;
+    padding: 0;
+    margin: 0;
   }
+
+  /* Submenu items */
+  header nav .nav-sections .megamenu-panel > ul > li {
+    padding: 0 20px 0 0;
+    margin: 0 75px 16px 0;
+  }
+
+  /* stylelint-disable no-descending-specificity -- submenu link needs ::after chevron */
+
+  /* Submenu link base */
+  header nav .nav-sections .megamenu-panel > ul > li > a {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+    line-height: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Submenu link chevron — blue like original */
+  header nav .nav-sections .megamenu-panel > ul > li > a::after {
+    content: '\276F';
+    font-size: 10px;
+    line-height: 1;
+    color: #426da9;
+    transition: transform 0.15s ease-in-out;
+  }
+
+  /* Submenu link hover */
+  header nav .nav-sections .megamenu-panel > ul > li > a:hover {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
+  header nav .nav-sections .megamenu-panel > ul > li > a:hover::after {
+    transform: translateX(3px);
+  }
+
+  /* stylelint-enable no-descending-specificity */
 }
 
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
+/* ===== Language selector modal ===== */
+.lang-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 50%);
+  z-index: 1000;
+  overflow-y: auto;
 }
+
+.lang-modal-overlay.visible {
+  display: block;
+}
+
+.lang-modal {
+  position: relative;
+  max-width: 780px;
+  margin: 80px auto 28px;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid rgb(0 0 0 / 20%);
+}
+
+.lang-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 64px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.lang-modal-header h4 {
+  font-size: 40px;
+  font-weight: 500;
+  color: #242424;
+  margin: 0;
+  font-family: var(--body-font-family);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.lang-modal-close {
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  padding: 0;
+  line-height: 1;
+}
+
+.lang-modal-close:hover {
+  opacity: 0.7;
+}
+
+.lang-modal-body {
+  padding: 40px 64px;
+}
+
+.lang-region {
+  display: inline-block;
+  vertical-align: top;
+  width: 195px;
+  margin-right: 8px;
+  margin-bottom: 20px;
+}
+
+.lang-region h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #767676;
+  letter-spacing: 2.08px;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+/* stylelint-disable no-descending-specificity -- lang-modal is outside header nav scope */
+
+.lang-region ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.lang-region li {
+  width: 195px;
+  padding: 0;
+  margin: 0;
+}
+
+.lang-region a {
+  font-size: 16px;
+  font-weight: 700;
+  color: #426da9;
+  line-height: 24px;
+  text-decoration: underline;
+  padding: 6px 0 0;
+  display: block;
+}
+
+.lang-region a:hover {
+  color: #2c5282;
+}
+
+/* stylelint-enable no-descending-specificity */

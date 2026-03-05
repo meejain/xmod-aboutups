@@ -1,3 +1,4 @@
+/* UPS Hero Block - Featured story with image background and content overlay */
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -5,33 +6,151 @@
 
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
-}
-
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+  min-height: 400px;
+  max-height: 750px;
+  overflow: hidden;
 }
 
 .hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  display: block;
+  height: 100%;
 }
 
 .hero img {
+  display: block;
   object-fit: cover;
   width: 100%;
   height: 100%;
+  min-height: 400px;
+  max-height: 750px;
+}
+
+/* Image row - full bleed background */
+.hero > div:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Content row - overlay card */
+.hero > div:last-child {
+  position: relative;
+  z-index: 1;
+  min-height: 400px;
+  max-height: 750px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero > div:first-child > div {
+  height: 100%;
+}
+
+/* White card overlay */
+.hero > div:last-child > div {
+  background-color: var(--background-color);
+  padding: 32px;
+  margin: 16px;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Eyebrow label (e.g. FINANCIALS) with gold accent bar */
+.hero .hero-eyebrow {
+  position: relative;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--text-color);
+  margin: 0 0 8px;
+  line-height: 1.4;
+  padding-left: 40px;
+}
+
+.hero .hero-eyebrow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 32px;
+  height: 3px;
+  background-color: #ffd100;
+  border-radius: 5px;
+  transform: translateY(-50%);
+}
+
+/* Title */
+.hero h4 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.33;
+  color: var(--text-color);
+  margin: 8px 0;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Description */
+.hero .hero-description {
+  margin: 8px 0 0;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* CTA button wrapper */
+.hero .hero-cta {
+  margin: 16px 0 0;
 }
 
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    min-height: 550px;
+    max-height: 750px;
   }
+
+  .hero img {
+    min-height: 550px;
+  }
+
+  .hero > div:last-child {
+    min-height: 550px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .hero > div:last-child > div {
+    padding: 48px;
+    margin: 0 0 90px;
+    max-width: 480px;
+  }
+
+  .hero h4 {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+}
+
+/* ===== Hero entrance animations ===== */
+
+/* White panel — hidden until section appears */
+.hero > div:last-child > div {
+  opacity: 0;
+}
+
+/* Panel slides up on appear */
+.hero-container.section.appear .hero > div:last-child > div {
+  animation: fade-in-up 1s ease-out 0.5s both;
+}
+
+/* Panel children — hidden until panel arrives */
+.hero > div:last-child > div > * {
+  opacity: 0;
+}
+
+/* Children fade up after panel */
+.hero-container.section.appear .hero > div:last-child > div > * {
+  animation: fade-in-up-text 1s ease-out 1.2s both;
 }
