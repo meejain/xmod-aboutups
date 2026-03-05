@@ -1,19 +1,23 @@
+/* UPS Story Cards */
 .cards > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
+  grid-template-columns: 1fr;
   gap: 24px;
 }
 
 .cards > ul > li {
-  border: 1px solid #dadada;
   background-color: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgb(0 0 0 / 16%);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+.cards > ul > li:hover {
+  box-shadow: 0 8px 32px rgb(0 0 0 / 20%);
 }
 
 .cards .cards-card-image {
@@ -22,6 +26,126 @@
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 380 / 280;
   object-fit: cover;
+  display: block;
+}
+
+.cards .cards-card-body {
+  padding: 24px 24px 32px;
+}
+
+/* Card eyebrow with gold accent bar */
+.cards .cards-eyebrow {
+  position: relative;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: var(--text-color);
+  margin: 0 0 12px;
+  line-height: 1.5;
+  padding-left: 40px;
+}
+
+.cards .cards-eyebrow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 32px;
+  height: 3px;
+  background-color: #ffd100;
+  border-radius: 5px;
+  transform: translateY(-50%);
+}
+
+/* Card title */
+.cards .cards-card-body h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.33;
+}
+
+.cards .cards-card-body h3 a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.cards .cards-card-body h3 a:hover {
+  color: var(--link-color);
+}
+
+/* Card description */
+.cards .cards-description {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* View All Stories link below cards */
+.cards-container .default-content-wrapper {
+  margin-top: 32px;
+  text-align: center;
+}
+
+@media (width >= 600px) {
+  .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cards .cards-card-body {
+    padding: 24px 40px 40px;
+  }
+
+  .cards .cards-card-body h3 {
+    font-size: 24px;
+    line-height: 1.33;
+  }
+}
+
+/* ===== Cards entrance animations ===== */
+
+/* Cards hidden until section scrolls into view */
+.cards > ul > li {
+  opacity: 0;
+}
+
+/* Staggered slide-up for each card */
+.section.appear .cards > ul > li:nth-child(1) {
+  animation: fade-in-up 1s ease-out 0.2s both;
+}
+
+.section.appear .cards > ul > li:nth-child(2) {
+  animation: fade-in-up 1s ease-out 0.4s both;
+}
+
+.section.appear .cards > ul > li:nth-child(3) {
+  animation: fade-in-up 1s ease-out 0.6s both;
+}
+
+/* Card body content fades up after card */
+.cards .cards-card-body {
+  opacity: 0;
+}
+
+.section.appear .cards .cards-card-body {
+  animation: fade-in-up-text 1s ease-out 1.2s both;
+}
+
+/* View All Stories link below cards */
+.cards-container.section .default-content-wrapper {
+  opacity: 0;
+}
+
+.cards-container.section.appear .default-content-wrapper {
+  animation: fade-in-up-text 1s ease-out 1.5s both;
 }

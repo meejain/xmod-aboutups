@@ -1,0 +1,23 @@
+{
+  "templates": [
+    {
+      "name": "ups-about-home",
+      "urls": ["https://about.ups.com/us/en/home.html"],
+      "description": "UPS About homepage with hero banner, story cards, about us headline, facts & figures, and impact section",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [".hero .upspr-heroimage"]
+        },
+        {
+          "name": "cards",
+          "instances": [".pr04-threecolumnteaser .upspr-homepage-latest-stories"]
+        },
+        {
+          "name": "columns",
+          "instances": [".hero .vertical-hero", ".sectioncard .upspr-xd-card"]
+        }
+      ]
+    }
+  ]
+}

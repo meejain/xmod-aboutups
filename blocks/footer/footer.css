@@ -1,20 +1,276 @@
+/* UPS Footer — dark brown theme */
 footer {
-  background-color: var(--light-color);
+  background-color: #351c15;
+  color: #fff;
   font-size: var(--body-font-size-xs);
 }
 
 footer .footer > div {
+  display: grid;
+  grid-template-columns: 1fr;
   margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
+  padding: 0 24px;
 }
 
 footer .footer p {
   margin: 0;
 }
 
+/* — Global link styles — */
+footer .footer a:any-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer .footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Section 1: Top buttons (layout) ===== */
+footer .footer > div > .section:first-child {
+  grid-column: 1 / -1;
+  padding: 40px 0 20px;
+  text-align: center;
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+}
+
+footer .footer > div > .section:first-child .button-wrapper {
+  display: inline-block;
+  margin: 0 8px;
+}
+
+/* ===== Sections 2–5: Column content ===== */
+footer .footer > div > .section:nth-child(2),
+footer .footer > div > .section:nth-child(3),
+footer .footer > div > .section:nth-child(4),
+footer .footer > div > .section:nth-child(5) {
+  padding: 24px 0;
+}
+
+footer .footer > div > .section:nth-child(2) .default-content-wrapper > p:first-child,
+footer .footer > div > .section:nth-child(3) .default-content-wrapper > p:first-child,
+footer .footer > div > .section:nth-child(4) .default-content-wrapper > p:first-child,
+footer .footer > div > .section:nth-child(5) .default-content-wrapper > p:first-child {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  color: #c6c6c6;
+  margin-bottom: 32px;
+}
+
+footer .footer > div > .section:nth-child(2) .default-content-wrapper > p:first-child strong,
+footer .footer > div > .section:nth-child(3) .default-content-wrapper > p:first-child strong,
+footer .footer > div > .section:nth-child(4) .default-content-wrapper > p:first-child strong,
+footer .footer > div > .section:nth-child(5) .default-content-wrapper > p:first-child strong {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+footer .footer > div > .section:nth-child(2) ul,
+footer .footer > div > .section:nth-child(3) ul,
+footer .footer > div > .section:nth-child(4) ul,
+footer .footer > div > .section:nth-child(5) ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer > div > .section:nth-child(2) li,
+footer .footer > div > .section:nth-child(3) li,
+footer .footer > div > .section:nth-child(4) li,
+footer .footer > div > .section:nth-child(5) li {
+  margin-bottom: 16px;
+  line-height: 24px;
+}
+
+/* — Column link base (specificity 0,3,4) — */
+footer .footer > div > .section:nth-child(2) li a,
+footer .footer > div > .section:nth-child(3) li a,
+footer .footer > div > .section:nth-child(4) li a,
+footer .footer > div > .section:nth-child(5) li a {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* — Section 4: Social icon layout — */
+footer .footer > div > .section:nth-child(4) ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+footer .footer > div > .section:nth-child(4) li {
+  display: inline-block;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+/* Social icon link — circular with SVG */
+footer .footer > div > .section:nth-child(4) li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: 0;
+  color: rgb(255 255 255 / 80%);
+}
+
+footer .footer > div > .section:nth-child(4) li a svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* — Button base — override global button chevron for footer — */
+footer .footer > div > .section:first-child a.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid #c6c6c6;
+  border-radius: 80px;
+  padding: 15px 32px 14px;
+  color: #c6c6c6;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  min-width: 160px;
+  justify-content: center;
+  transition: background-color 0.15s ease-in-out;
+}
+
+footer .footer > div > .section:nth-child(5) a.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 2px solid #c6c6c6;
+  border-radius: 80px;
+  padding: 15px 32px 14px;
+  color: #c6c6c6;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* Footer button chevron — inherits from global ::after */
+footer .footer > div > .section:first-child a.button::after,
+footer .footer > div > .section:nth-child(5) a.button::after {
+  color: #c6c6c6;
+}
+
+/* — Column link hover (specificity 0,4,4) — */
+footer .footer > div > .section:nth-child(2) li a:hover,
+footer .footer > div > .section:nth-child(3) li a:hover,
+footer .footer > div > .section:nth-child(5) li a:hover {
+  text-decoration: underline;
+}
+
+footer .footer > div > .section:nth-child(4) li a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer .footer > div > .section:nth-child(4) li a:hover svg circle:first-child {
+  fill: rgb(255 255 255 / 12%);
+}
+
+/* — Button hover — */
+footer .footer > div > .section:first-child a.button:hover {
+  background-color: rgb(255 255 255 / 8%);
+  text-decoration: none;
+}
+
+footer .footer > div > .section:nth-child(5) a.button:hover {
+  background-color: rgb(255 255 255 / 8%);
+  text-decoration: none;
+}
+
+/* ===== Section 5: Subscribe box ===== */
+footer .footer > div > .section:nth-child(5) .default-content-wrapper {
+  background-color: rgb(255 255 255 / 8%);
+  padding: 32px;
+  border-radius: 8px;
+}
+
+footer .footer > div > .section:nth-child(5) .default-content-wrapper > p:first-child {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+footer .footer > div > .section:nth-child(5) .default-content-wrapper > p:first-child strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ===== Section 6: Bottom legal row ===== */
+footer .footer > div > .section:last-child {
+  grid-column: 1 / -1;
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  padding: 24px 0 40px;
+}
+
+footer .footer > div > .section:last-child .default-content-wrapper > p:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: center;
+  font-size: 0;
+}
+
+footer .footer > div > .section:last-child .default-content-wrapper > p:first-child a {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgb(198 198 198 / 60%);
+  text-decoration: none;
+  padding: 4px 12px;
+  border-right: 1px solid rgb(198 198 198 / 30%);
+}
+
+footer .footer > div > .section:last-child .default-content-wrapper > p:first-child a:first-child {
+  padding-left: 0;
+}
+
+footer .footer > div > .section:last-child .default-content-wrapper > p:first-child a:last-of-type {
+  border-right: none;
+}
+
+footer .footer > div > .section:last-child .default-content-wrapper > p:first-child a:hover {
+  text-decoration: underline;
+}
+
+footer .footer > div > .section:last-child .default-content-wrapper > p:last-child {
+  font-size: 13px;
+  color: rgb(198 198 198 / 60%);
+  line-height: 1.5;
+  margin-top: 16px;
+}
+
+/* ===== Desktop grid layout ===== */
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 32px;
+  }
+
+  footer .footer > div > .section:nth-child(2),
+  footer .footer > div > .section:nth-child(3),
+  footer .footer > div > .section:nth-child(4),
+  footer .footer > div > .section:nth-child(5) {
+    padding: 40px 15px 40px 0;
+  }
+
+  footer .footer > div > .section:nth-child(5) .default-content-wrapper {
+    padding: 40px;
   }
 }

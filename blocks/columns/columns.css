@@ -1,10 +1,26 @@
+/* UPS Columns Block - Facts & Figures + Our Impact patterns */
+.columns-container {
+  background-color: var(--light-color);
+}
+
+.columns-container .columns-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
 .columns > div {
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--background-color);
 }
 
 .columns img {
   width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .columns > div > div {
@@ -19,15 +35,220 @@
   display: block;
 }
 
+/* Content column styling */
+.columns > div > div:not(.columns-img-col) {
+  padding: 32px 24px;
+}
+
+/* --- Facts / Stats variant --- */
+
+/* Stat item with divider */
+.columns .columns-stat {
+  padding: 24px 0;
+  border-bottom: 4px solid #f2f2f2;
+  text-align: center;
+}
+
+.columns .columns-stat:first-child {
+  padding-top: 0;
+}
+
+.columns .columns-stat:last-child {
+  border-bottom: none;
+}
+
+.columns .columns-stat h4 {
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--text-color);
+  margin: 0 0 8px;
+}
+
+.columns .columns-stat p {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* Facts CTA button wrapper */
+.columns .columns-facts-cta {
+  text-align: center;
+  padding-top: 24px;
+  margin: 0;
+}
+
+/* --- Our Impact / eyebrow+heading variant --- */
+
+/* Secondary CTA link (em > a) — outline pill */
+.columns > div > div:not(.columns-img-col) p em a {
+  border: 2px solid var(--ups-blue);
+  background-color: var(--background-color);
+  color: var(--ups-blue);
+  border-radius: 80px;
+  padding: 15px 32px 14px;
+  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  font-style: normal;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+}
+
+/* Chevron arrow for secondary CTA */
+.columns > div > div:not(.columns-img-col) p em a::after {
+  content: "\276F";
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Secondary CTA hover */
+.columns > div > div:not(.columns-img-col) p em a:hover {
+  background-color: transparent;
+  border-color: #244674;
+  color: #244674;
+  text-decoration: none;
+}
+
+/* Eyebrow label (e.g. OUR IMPACT) with gold bar above */
+.columns .columns-eyebrow {
+  position: relative;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.08px;
+  color: var(--text-color);
+  margin: 0 0 16px;
+  padding-top: 16px;
+}
+
+.columns .columns-eyebrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 104px;
+  height: 4px;
+  background-color: #ffd100;
+  border-radius: 5px;
+}
+
+/* Heading after eyebrow (Our Impact pattern) */
+.columns h2 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0 0 24px;
+  color: var(--text-color);
+}
+
+/* Description text in card pattern */
+.columns .columns-description {
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 0 0 32px;
+}
+
 @media (width >= 900px) {
+  .columns-container .columns-wrapper {
+    padding: 60px 32px;
+  }
+
   .columns > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    align-items: stretch;
+    flex-direction: row;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
   }
+
+  .columns > div > .columns-img-col {
+    flex: 1;
+  }
+
+  .columns > div > .columns-img-col img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Content column desktop padding */
+  .columns > div > div:not(.columns-img-col) {
+    padding: 72px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Heading desktop size */
+  .columns h2 {
+    font-size: var(--heading-font-size-xl);
+    line-height: 1.2;
+  }
+
+  /* Stat values desktop size */
+  .columns .columns-stat h4 {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  /* stylelint-disable no-descending-specificity -- facts targets row, not cell */
+
+  /* --- Facts overlay layout on desktop --- */
+  .columns.columns-facts > div {
+    position: relative;
+    min-height: 550px;
+    justify-content: flex-end;
+  }
+
+  .columns.columns-facts .columns-img-col {
+    position: absolute;
+    inset: 0;
+    flex: none;
+  }
+
+  .columns.columns-facts > div > div:not(.columns-img-col) {
+    position: relative;
+    z-index: 1;
+    flex: none;
+    width: 320px;
+    max-width: 320px;
+    padding: 32px;
+    margin: 32px 80px 32px 0;
+    background-color: var(--background-color);
+    border-radius: 8px;
+  }
+
+  /* stylelint-enable no-descending-specificity */
+}
+
+/* ===== Columns entrance animations ===== */
+
+/* Entire columns card — hidden until section scrolls into view */
+.columns > div {
+  opacity: 0;
+}
+
+/* Card slides up on appear */
+.section.appear .columns > div {
+  animation: fade-in-up 1s ease-out 0.3s both;
+}
+
+/* Content inside columns — hidden until card arrives */
+.columns > div > div:not(.columns-img-col) > * {
+  opacity: 0;
+}
+
+/* Content fades up after card */
+.section.appear .columns > div > div:not(.columns-img-col) > * {
+  animation: fade-in-up-text 1s ease-out 1s both;
 }
