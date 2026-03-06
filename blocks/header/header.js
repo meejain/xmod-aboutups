@@ -204,7 +204,8 @@ function focusNavSection() {
  */
 function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+  const selector = '.nav-sections .default-content-wrapper > ul > li, .nav-sections > div > ul > li';
+  sections.querySelectorAll(selector).forEach((section) => {
     section.setAttribute('aria-expanded', expanded);
   });
 }
@@ -344,7 +345,8 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+    const sectionItems = navSections.querySelectorAll(':scope .default-content-wrapper > ul > li, :scope > div > ul > li');
+    sectionItems.forEach((navSection) => {
       const subUl = navSection.querySelector('ul');
       if (subUl) {
         navSection.classList.add('nav-drop');
@@ -390,6 +392,10 @@ export default async function decorate(block) {
           navSection.setAttribute('aria-expanded', 'false');
         }
       });
+
+      /* Mark the top-level nav link for gold bar (works with any DOM: li > a or li > p > a) */
+      const sectionLink = navSection.querySelector('a');
+      if (sectionLink) sectionLink.classList.add('nav-section-link');
     });
   }
 

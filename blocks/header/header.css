@@ -417,29 +417,30 @@ header nav .nav-sections ul > li > a:hover {
     cursor: pointer;
   }
 
-  /* Gold hover bar under nav links — ::after pseudo-element */
-  header nav .nav-sections .default-content-wrapper > ul > li > a {
+  /* Gold bar under nav link when expanded (dropdown open) — .nav-section-link set in JS (any DOM) */
+  header nav .nav-sections .nav-section-link {
     position: relative;
     display: inline-block;
     padding: 8px 0;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > a::after {
+  header nav .nav-sections .nav-section-link::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    width: 70%;
     height: 3px;
     background-color: #ffd100;
     border-radius: 2px;
-    transform: scaleX(0);
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
     transition: transform 0.2s ease-in-out;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li > a:hover::after,
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > a::after {
-    transform: scaleX(1);
+  /* Show bar only when this item's dropdown is open */
+  header nav .nav-sections li[aria-expanded='true'] .nav-section-link::after {
+    transform: translateX(-50%) scaleX(1);
   }
 
   header nav .nav-sections ul {
@@ -460,33 +461,37 @@ header nav .nav-sections ul > li > a:hover {
     border-bottom: none;
   }
 
-  /* Reset mobile accordion link to desktop inline-block */
-  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop > a {
+  /* Reset mobile accordion link to desktop inline-block (nav-drop uses same .nav-section-link) */
+  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop .nav-section-link,
+  header nav .nav-sections > div > ul > li.nav-drop .nav-section-link {
     display: inline-block;
     position: relative;
     padding: 8px 0;
   }
 
-  /* Reset mobile chevron to desktop gold hover bar */
-  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop > a::after {
+  /* Override mobile chevron with gold bar on desktop (match mobile selector specificity) */
+  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop .nav-section-link::after,
+  header nav .nav-sections > div > ul > li.nav-drop .nav-section-link::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    width: 70%;
     height: 3px;
     background-color: #ffd100;
     border-radius: 2px;
-    transform: scaleX(0);
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
     transition: transform 0.2s ease-in-out;
     color: transparent;
     font-size: inherit;
     flex-shrink: unset;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop > a:hover::after,
-  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true'] > a::after {
-    transform: scaleX(1);
+  /* Show bar only when this dropdown is open */
+  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true'] .nav-section-link::after,
+  header nav .nav-sections > div > ul > li.nav-drop[aria-expanded='true'] .nav-section-link::after {
+    transform: translateX(-50%) scaleX(1);
   }
 
   /* ===== Megamenu dropdown panel ===== */
