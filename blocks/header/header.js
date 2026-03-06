@@ -220,7 +220,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
+  toggleAllNavSections(navSections, 'false');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   // enable nav dropdown keyboard accessibility
   if (navSections) {
@@ -358,14 +358,17 @@ export default async function decorate(block) {
         const navLink = navSection.querySelector(':scope > a');
         if (navLink) {
           navLink.addEventListener('click', (e) => {
-            if (isDesktop.matches) e.preventDefault();
+            e.preventDefault();
           });
         }
       }
-      navSection.addEventListener('click', () => {
+      navSection.addEventListener('click', (e) => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
           toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        } else if (!e.target.closest('.megamenu-panel')) {
+          const expanded = navSection.getAttribute('aria-expanded') === 'true';
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
