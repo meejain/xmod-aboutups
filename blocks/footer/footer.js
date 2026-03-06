@@ -38,10 +38,15 @@ function decorateSocialIcons(footer) {
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // load footer as fragment
+  // load footer as fragment (default: /footer)
   const footerMeta = getMetadata('footer');
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/content/footer';
+  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   const fragment = await loadFragment(footerPath);
+
+  if (!fragment || !fragment.firstElementChild) {
+    block.textContent = '';
+    return;
+  }
 
   // decorate footer DOM
   block.textContent = '';
