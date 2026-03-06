@@ -516,7 +516,7 @@ header nav .nav-sections ul > li > a:hover {
     left: 0;
     right: 0;
     top: 100%;
-    padding: 40px 130px 20px;
+    padding: 40px max(32px, calc((100vw - 1264px) / 2 + 32px)) 20px;
     background-color: var(--background-color);
     white-space: initial;
     border-top: 1px solid #f2f2f2;
