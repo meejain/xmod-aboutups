@@ -233,6 +233,8 @@
 
 /* ===== Columns entrance animations ===== */
 
+/* stylelint-disable no-descending-specificity, no-duplicate-selectors -- animation overrides separated from layout */
+
 /* Entire columns card — hidden until section scrolls into view */
 .columns > div {
   opacity: 0;

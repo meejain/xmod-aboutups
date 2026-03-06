@@ -114,6 +114,8 @@
 
 /* ===== Cards entrance animations ===== */
 
+/* stylelint-disable no-descending-specificity, no-duplicate-selectors -- animation overrides separated from layout */
+
 /* Cards hidden until section scrolls into view */
 .cards > ul > li {
   opacity: 0;

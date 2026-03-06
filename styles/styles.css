@@ -339,7 +339,7 @@ main > .section > div {
 
 /* Section 1: Hero tagline heading - centered bold statement */
 main > .section:first-of-type {
-  background-color: var(--light-color);
+  background-color: var(--background-color);
   padding: 48px 0;
   margin: 0;
 }
